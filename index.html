@@ -57,23 +57,23 @@
     <script>
 
       function playSound(e){ // funtion to trigger sound
-          const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // assigns audio to key
-          const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // assigns key to html div with same keycode
-          if(!audio) return; // stops funciton if you press a key that doesn't have audio assigned to it
-          audio.currentTime = 0;  // resets time to the start
-          audio.play();
-          key.classList.add('playing');
+          const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // assigns audio to key.
+          const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // assigns key to html div with same keycode.
+          if(!audio) return; // stops funciton if you press a key that doesn't have audio assigned to it.
+          audio.currentTime = 0;  // resets time to the start.
+          audio.play(); // .play() a javascript function that plays audio or video.
+          key.classList.add('playing'); // adds class of 'playing' to html to change color when playSound is triggered.
       };
 
       function removeTransition(e) {
-        if(e.propertyName !== 'transform') return // skip if its not transfer
-        this.classList.remove('playing');
+        if(e.propertyName !== 'transform') return // skip if its not transform
+        this.classList.remove('playing'); // removes 'playing' class once the transition is complete, reverting it back to original color.
       }
 
-      const keys = document.querySelectorAll('.key');
-      keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+      const keys = document.querySelectorAll('.key'); // creates an array of objects with the class of key
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition)); // adds an event listener that triggers when a transition ends to trigger removeTransition to remove the class that initiates the transition.
 
-      window.addEventListener('keydown', playSound);
+      window.addEventListener('keydown', playSound); // triggers playSound when pressing a key.
 
     </script>
   </body>
