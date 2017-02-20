@@ -1,4 +1,9 @@
+.key {
+  color: green;
+  transition: all 0.07s;
+}
+
 .playing {
+  transform: scale(1.01);
   color: blue;
-  background-color: black;
 }
