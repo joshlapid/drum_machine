@@ -55,21 +55,26 @@
       <audio data-key="76" src="sounds/tink.wav"></audio>
     </div>
     <script>
-      window.addEventListener('keydown', function(e){
-          const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-          const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-          if(!audio) return; // stops funciton
+
+      function playSound(e){ // funtion to trigger sound
+          const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // assigns audio to key
+          const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // assigns key to html div with same keycode
+          if(!audio) return; // stops funciton if you press a key that doesn't have audio assigned to it
           audio.currentTime = 0;  // resets time to the start
           audio.play();
           key.classList.add('playing');
-      });
+      };
 
       function removeTransition(e) {
-        console.log(e);
+        if(e.propertyName !== 'transform') return // skip if its not transfer
+        this.classList.remove('playing');
       }
 
       const keys = document.querySelectorAll('.key');
       keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+      window.addEventListener('keydown', playSound);
+
     </script>
   </body>
 </html>
